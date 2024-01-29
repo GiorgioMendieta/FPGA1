@@ -48,7 +48,6 @@ begin
     -- Reset Asynchrone
     if Reset = '1' then
       Cpt <= 0;
-
       -- Si on A un Front d'Horloge...
     elsif rising_edge(Clk) then
 

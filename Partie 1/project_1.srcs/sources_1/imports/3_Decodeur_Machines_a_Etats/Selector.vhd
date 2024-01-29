@@ -74,9 +74,10 @@ begin
   --------------------------
   -- Commande du Decodeur --
   --------------------------
-  Decode                        <= "11" when Sup = '1' else -- Si Count > 9       --> Decode = 11 --> LEDs on
-    "10" when Count > 5 and Count <= 9 else                   -- Si Count = 6,7,8,9 --> Decode = 10 --> LEDs blink 3x/s
-    "01" when Count > 2 and Count <= 5 else                   -- Si Count = 3,4,5   --> Decode = 01 --> LEDs blink 1x/s
-    "00";                                                     -- Si Count = 0,1,2   --> Decode = 00 --> LEDs off
+  Decode <=
+    "11" when Sup = '1' else                -- Si Count > 9       --> Decode = 11 --> LEDs on
+    "10" when Count > 5 and Count <= 9 else -- Si Count = 6,7,8,9 --> Decode = 10 --> LEDs blink 3x/s
+    "01" when Count > 2 and Count <= 5 else -- Si Count = 3,4,5   --> Decode = 01 --> LEDs blink 1x/s
+    "00";                                   -- Si Count = 0,1,2   --> Decode = 00 --> LEDs off
 
 end Behavioral;
