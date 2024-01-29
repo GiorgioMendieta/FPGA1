@@ -12,77 +12,71 @@
 -- Description: Testbench du Compteur d'Impulsions
 --
 ----------------------------------------------------------------------------------
-LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
- 
+library ieee;
+use ieee.std_logic_1164.all;
+
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
- 
-ENTITY TB_impulse_count IS
-END TB_impulse_count;
- 
-ARCHITECTURE behavior OF TB_impulse_count IS 
- 
-    -- Component Declaration for the Unit Under Test (UUT)
- 
-    COMPONENT IMPULSE_COUNT
-    PORT(
-         Reset : IN  std_logic;
-         Button_L : IN  std_logic;
-         Button_C : IN  std_logic;
-         Clk : in STD_LOGIC;
-         Count : OUT  std_logic_vector(3 downto 0);
-         Sup : OUT  std_logic
-        );
-    END COMPONENT;
-    
 
-   --Inputs
-   signal Reset : std_logic := '0';
-   signal Button_L : std_logic := '0';
-   signal Button_C : std_logic := '0';
-   signal Clk : std_logic;
+entity TB_impulse_count is
+end TB_impulse_count;
 
- 	--Outputs
-   signal Count : std_logic_vector(3 downto 0);
-   signal Sup : std_logic;
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
-   -- Clock period definitions
-   constant clk_period : time := 1 ns;
- 
+architecture behavior of TB_impulse_count is
 
-BEGIN
- 
-	-- Instantiate the Unit Under Test (UUT)
-   uut: IMPULSE_COUNT PORT MAP (
-          Reset => Reset,
-          Button_L => Button_L,
-          Button_C => Button_C,
-          Clk => Clk,
-          Count => Count,
-          Sup => Sup
-        );
-        
-    clk_process : process
-      begin
-        Clk <= '0';
-        wait for clk_period/2; --for 0.5 ns signal is '0'.
-        Clk <= '1';
-        wait for clk_period/2; --for next 0.5 ns signal is '1'.
-      end process;
+  -- Component Declaration for the Unit Under Test (UUT)
 
+  component IMPULSE_COUNT
+    port
+    (
+      Reset    : in std_logic;
+      Button_L : in std_logic;
+      Button_C : in std_logic;
+      Clk      : in std_logic;
+      Count    : out std_logic_vector(3 downto 0);
+      Sup      : out std_logic
+    );
+  end component;
+  --Inputs
+  signal Reset    : std_logic := '0';
+  signal Button_L : std_logic := '0';
+  signal Button_C : std_logic := '0';
+  signal Clk      : std_logic;
 
-	-- Evolution des Entrées
-	Reset <= '1' after 2 ns, '0' after 10 ns;
-	
-	Button_L <= '1' after 100 ns, '0' after 150 ns, '1' after 200 ns, '0' after 250 ns, '1' after 300 ns, '0' after 350 ns,
-					'1' after 700 ns, '0' after 750 ns, '1' after 800 ns, '0' after 850 ns, '1' after 900 ns, '0' after 950 ns,
-					'1' after 1000 ns, '0' after 1050 ns, '1' after 1100 ns, '0' after 1150 ns, '1' after 1200 ns, '0' after 1250 ns,
-					'1' after 1300 ns, '0' after 1350 ns, '1' after 1400 ns, '0' after 1450 ns, '1' after 1500 ns, '0' after 1550 ns;
-	
-	Button_C <= '1' after 400 ns, '0' after 450 ns, '1' after 500 ns, '0' after 600 ns;
-	
-	
-END;
+  --Outputs
+  signal Count : std_logic_vector(3 downto 0);
+  signal Sup   : std_logic;
+  -- No clocks detected in port list. Replace <clock> below with 
+  -- appropriate port name 
+  -- Clock period definitions
+  constant clk_period : time := 1 ns;
+begin
+
+  -- Instantiate the Unit Under Test (UUT)
+  uut : IMPULSE_COUNT port map
+  (
+    Reset    => Reset,
+    Button_L => Button_L,
+    Button_C => Button_C,
+    Clk      => Clk,
+    Count    => Count,
+    Sup      => Sup
+  );
+
+  clk_process : process
+  begin
+    Clk <= '0';
+    wait for clk_period/2; --for 0.5 ns signal is '0'.
+    Clk <= '1';
+    wait for clk_period/2; --for next 0.5 ns signal is '1'.
+  end process;
+  -- Evolution des Entrées
+  Reset <= '1' after 2 ns, '0' after 10 ns;
+
+  Button_L <= '1' after 100 ns, '0' after 150 ns, '1' after 200 ns, '0' after 250 ns, '1' after 300 ns, '0' after 350 ns,
+    '1' after 700 ns, '0' after 750 ns, '1' after 800 ns, '0' after 850 ns, '1' after 900 ns, '0' after 950 ns,
+    '1' after 1000 ns, '0' after 1050 ns, '1' after 1100 ns, '0' after 1150 ns, '1' after 1200 ns, '0' after 1250 ns,
+    '1' after 1300 ns, '0' after 1350 ns, '1' after 1400 ns, '0' after 1450 ns, '1' after 1500 ns, '0' after 1550 ns;
+
+  Button_C <= '1' after 400 ns, '0' after 450 ns, '1' after 500 ns, '0' after 600 ns;
+end;

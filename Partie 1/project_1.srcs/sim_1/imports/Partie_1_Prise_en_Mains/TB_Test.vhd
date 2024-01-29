@@ -14,28 +14,29 @@
 --------------------------------------------------------------------------
 
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 entity TB_Test is
 end TB_Test;
 
 architecture Behavioral of TB_Test is
-    
--- Signaux pour le port map du module à tester
-signal SW0 : STD_LOGIC;
-signal SW1 : STD_LOGIC;
-signal SW2 : STD_LOGIC;
-signal LED : STD_LOGIC_VECTOR (2 downto 0);
+
+  -- Signaux pour le port map du module à tester
+  signal SW0 : std_logic;
+  signal SW1 : std_logic;
+  signal SW2 : std_logic;
+  signal LED : std_logic_vector (2 downto 0);
 
 begin
 
--- Instanciation du Module Test
-l0: entity work.Test
-port map(SW0=>SW0,SW1=>SW1,SW2=>SW2,LED=>LED);
+  -- Instanciation du Module Test
+  l0 : entity work.Test
+    port map
+      (SW0 => SW0, SW1 => SW1, SW2 => SW2, LED => LED);
 
--- Evolution des Entrees
-SW0 <= '0', '1' after 200 ns, '0' after 800 ns;
-SW1 <= '0', '1' after 400 ns;
-SW2 <= '0', '1' after 600 ns;
+  -- Evolution des Entrees
+  SW0 <= '0', '1' after 200 ns, '0' after 800 ns;
+  SW1 <= '0', '1' after 400 ns;
+  SW2 <= '0', '1' after 600 ns;
 
 end Behavioral;
