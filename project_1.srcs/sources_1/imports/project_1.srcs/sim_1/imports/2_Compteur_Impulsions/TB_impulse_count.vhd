@@ -49,8 +49,6 @@ ARCHITECTURE behavior OF TB_impulse_count IS
    signal Sup : std_logic;
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
-   -- Clock period definitions
-   constant clk_period : time := 1 ns;
  
 
 BEGIN
@@ -64,14 +62,6 @@ BEGIN
           Count => Count,
           Sup => Sup
         );
-        
-    clk_process : process
-      begin
-        Clk <= '0';
-        wait for clk_period/2; --for 0.5 ns signal is '0'.
-        Clk <= '1';
-        wait for clk_period/2; --for next 0.5 ns signal is '1'.
-      end process;
 
 
 	-- Evolution des Entrées
