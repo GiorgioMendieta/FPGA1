@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,18 +30,20 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Test is
-    Port ( SW2 : in STD_LOGIC;
-           SW1 : in STD_LOGIC;
-           SW0 : in STD_LOGIC;
-           LED : out STD_LOGIC_VECTOR (2 downto 0));
+  port
+  (
+    SW2 : in std_logic;
+    SW1 : in std_logic;
+    SW0 : in std_logic;
+    LED : out std_logic_vector (2 downto 0));
 end Test;
 
 architecture Behavioral of Test is
 
 begin
 
-    LED(0) <= SW0;
-    LED(1) <= SW1;
-    LED(2) <= SW0 AND SW1 AND SW2;
-    
+  LED(0) <= SW0;
+  LED(1) <= SW1;
+  LED(2) <= SW0 and SW1 and SW2;
+
 end Behavioral;
