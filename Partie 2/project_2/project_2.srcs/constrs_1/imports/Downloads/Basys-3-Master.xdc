@@ -111,6 +111,7 @@ set_property PACKAGE_PIN L1 [get_ports {led_tri_o[15]}]
 # Center
 #set_property PACKAGE_PIN U18 [get_ports {buttons_tri_i[1]}]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[1]}]
+# Up
 set_property PACKAGE_PIN T18 [get_ports {buttons_tri_i[1]}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[1]}]
 # Left
