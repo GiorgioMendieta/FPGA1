@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="TP2_SW_exo2" location="/home/yuva/workspace/TP2_SW_exo2" platform="/home/yuva/workspace/TP2_HW2/export/TP2_HW2/TP2_HW2.xpfm" platformUID="xilinx:basys3::0.0(custom)" systemProject="TP2_SW_exo2_system" sysConfig="TP2_HW2" runtime="C/C++" cpu="standalone_domain" cpuInstance="microblaze_0" os="standalone" mssSignature="b1a59d2f83fee8f8c547cb861dc34891">
+  <configuration name="Debug" id="xilinx.gnu.mb.exe.debug.1419813445">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.mb.exe.release.1820904692" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="empty_application"/>
+</sdkproject:SdkProject>
