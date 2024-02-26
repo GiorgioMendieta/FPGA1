@@ -112,14 +112,14 @@ set_property PACKAGE_PIN L1 [get_ports {led_tri_o[15]}]
 #set_property PACKAGE_PIN U18 [get_ports {buttons_tri_i[1]}]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[1]}]
 # Up
-set_property PACKAGE_PIN T18 [get_ports {buttons_tri_i[1]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[1]}]
-# Left
-set_property PACKAGE_PIN W19 [get_ports {buttons_tri_i[2]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[2]}]
-# Right
-set_property PACKAGE_PIN T17 [get_ports {buttons_tri_i[0]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[0]}]
+#set_property PACKAGE_PIN T18 [get_ports {buttons_tri_i[1]}]
+#	set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[1]}]
+## Left
+#set_property PACKAGE_PIN W19 [get_ports {buttons_tri_i[2]}]
+#	set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[2]}]
+## Right
+#set_property PACKAGE_PIN T17 [get_ports {buttons_tri_i[0]}]
+#	set_property IOSTANDARD LVCMOS33 [get_ports {buttons_tri_i[0]}]
 #set_property PACKAGE_PIN U17 [get_ports btnD]
 	#set_property IOSTANDARD LVCMOS33 [get_ports btnD]
 
