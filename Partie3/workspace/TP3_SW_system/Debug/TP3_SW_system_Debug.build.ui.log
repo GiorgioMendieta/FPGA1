@@ -1,0 +1,6 @@
+2024-02-26T12:27:07.207034900255-12:27:07 **** Build of configuration Debug for project TP3_SW_system ****
+000-make all 
+000-Skipping SD card image generation. Reason: "The system project only has applications for microblaze processors."
+00255-
+12:27:07 Build Finished (took 131ms)
+

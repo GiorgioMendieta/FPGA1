@@ -1,0 +1,24 @@
+2024-02-26T12:27:03.256088200255-12:27:03 **** Build of configuration Debug for project TP3_SW ****
+000-make all 
+000-'Building file: ../src/MyProgram.c'
+000-'Invoking: MicroBlaze g++ compiler'
+000-mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/MyProgram.o" -IC:/Users/UserTP/Desktop/FPGA1-main/Partie3/workspace/TP3_HW/export/TP3_HW/sw/TP3_HW/standalone_domain/bspinclude/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/MyProgram.d" -MT"src/MyProgram.o" -o "src/MyProgram.o" "../src/MyProgram.c"
+000-../src/MyProgram.c: In function 'int main()':
+000/TP3_SW/src/MyProgram.c13-1-1'XPAR_LED_SWITCH_DEVICE_ID' was not declared in this scope; did you mean 'XPAR_SW_DEVICE_ID'?238:../src/MyProgram.c:13:38: error: 'XPAR_LED_SWITCH_DEVICE_ID' was not declared in this scope; did you mean 'XPAR_SW_DEVICE_ID'?
+000-   13 |  Status = XGpio_Initialize(&switch_, XPAR_LED_SWITCH_DEVICE_ID);
+000-      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+000-      |                                      XPAR_SW_DEVICE_ID
+000-In file included from ../src/MyProgram.c:3:
+000/TP3_SW/src/MyProgram.c25-1-1'BaseAddress' was not declared in this scope220:../src/MyProgram.c:25:20: error: 'BaseAddress' was not declared in this scope
+000-   25 |   MY_LED_mWriteReg(BaseAddress, MY_LED_S00_AXI_SLV_REG0_OFFSET, 1);
+000-      |                    ^~~~~~~~~~~
+000/TP3_HW/export/TP3_HW/sw/TP3_HW/standalone_domain/bspinclude/include/my_led.h35-1-1in definition of macro 'MY_LED_mWriteReg'0-C:/Users/UserTP/Desktop/FPGA1-main/Partie3/workspace/TP3_HW/export/TP3_HW/sw/TP3_HW/standalone_domain/bspinclude/include/my_led.h:35:15: note: in definition of macro 'MY_LED_mWriteReg'
+000-   35 |    Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
+000-      |               ^~~~~~~~~~~
+000/TP3_SW/src/MyProgram.c26-1-1'Data' was not declared in this scope23:../src/MyProgram.c:26:3: error: 'Data' was not declared in this scope
+000-   26 |   Data = MY_LED_mReadReg(BaseAddress, 0);
+000-      |   ^~~~
+000/TP3_SW0-1-1make: *** [src/subdir.mk:23: src/MyProgram.o] Error 12-make: *** [src/subdir.mk:23: src/MyProgram.o] Error 1
+00255-
+12:27:05 Build Finished (took 1s.962ms)
+
