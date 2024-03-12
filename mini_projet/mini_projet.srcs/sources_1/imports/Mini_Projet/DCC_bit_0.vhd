@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.numeric_std.all;
 
-entity DCC_bit_1 is
+entity DCC_bit_0 is
   port
   (
     Reset    : in std_logic;  -- Reset Asynchrone
@@ -12,10 +12,10 @@ entity DCC_bit_1 is
     Fin      : out std_logic; -- Signal de Fin
     DCC_Out  : out std_logic  -- Signal DCC de sortie
   );
-end DCC_bit_1;
+end DCC_bit_0;
 
-architecture Behavioral of DCC_bit_1 is
-  constant MAX_COUNT : integer := 58; -- Durée de la signal (58 microsecondes)
+architecture Behavioral of DCC_bit_0 is
+  constant MAX_COUNT : integer := 100; -- Durée de la signal (100 microsecondes)
   type STATE is (Idle, High, Low, Fin);
 
   -- Signaux Internes
