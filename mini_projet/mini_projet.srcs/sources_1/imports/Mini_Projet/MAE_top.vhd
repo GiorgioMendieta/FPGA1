@@ -2,18 +2,20 @@
 -- Company: 
 -- Designed by: 
 --
--- Module Name: MAE_top - Behavioral
+-- Module Name: MAE - Behavioral
 -- Project Name: Centrale DCC
 -- Target Devices: NEXYS 4 DDR
 --
 -- Generates DCC frames and spaces them by 6ms
+-- Note: The DCC frame is big endian, so the first bit is the most significant bit
+-- This means frames will always start with the preambule (14 bits of 1s) 
 ----------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.numeric_std.all;
 
-entity MAE_top is
+entity MAE is
   port
   (
     Reset       : in std_logic;  -- Reset Asynchrone
@@ -27,10 +29,10 @@ entity MAE_top is
     DCC_in      : in std_logic;  -- Signal pour charger le bit DCC
     Shift_DCC   : out std_logic; -- Signal pour décaler le bit DCC
   );
-end MAE_top;
+end MAE;
 
-architecture Behavioral of MAE_top is
-  type STATE is (Reset, Idle, Bit_1, Bit_0, Fin_Trame);
+architecture Behavioral of MAE is
+  type STATE is (Idle, High, High_cont, Low, Low_cont, Fin_Trame, Delay);
 
   -- Signaux Internes
   signal EP, EF    : STATE;                 -- EP: Etat présent, EF: État Futur
@@ -43,63 +45,96 @@ begin
   sync : process (Clk, Reset)
   begin
     if (Reset = '0') then
-      EP <= Reset;
+      EP <= Idle;
     elsif (rising_edge(Clk)) then
       EP <= EF;
     end if;
   end process; -- Sync
 
-  -- Machine à État Fini
-  MAE : process (EP, Fin_0, Fin_1, Fin_Tempo)
+  -- FSM state management
+  FSM : process (EP, Fin_0, Fin_1, Fin_Tempo, DCC_in)
   begin
     case EP is
+        -- Initial state
       when Idle =>
         if (DCC_in = '0') then
-          EF <= Bit_0;
+          EF <= Low;
         elsif (DCC_in = '1') then
-          EF <= Bit_1;
+          EF <= High;
         end if;
 
-      when Bit_0 =>
+        -- Received a low bit
+      when Low =>
         -- Next state
-        EF <= Bit_0_cont;
+        EF <= Low_cont;
         -- Assign outputs
-        Go_0      <= '1';
-        Cpt_Trame <= Cpt_Trame + 1;
+        Go_0      <= '1';           -- Start DCC bit generation
+        Cpt_Trame <= Cpt_Trame + 1; -- Increment trame counter
 
-      when Bit_0_cont =>
+        -- Wait until the bit has been transmitted
+      when Low_cont =>
         -- Next state
-        EF <= Bit_0_cont;
-        -- Atteint la fin d'une trame avec deux commandes ?
+        EF <= Low_cont;
+        -- Reached the end of a frame?
         if (Cpt_Trame = 51) then
-          EF        <= Fin_Trame;
-          Cpt_Trame <= 0;
+          EF <= Fin_Trame;
         end if;
-        if (DCC_in = '0' and Fin_1 = '1') then
-          EF        <= Bit_0;
+
+        if (DCC_in = '0' and Fin_0 = '1') then
+          EF        <= Low;
           Shift_DCC <= '1';
-        elsif (DCC_in = '1' and Fin_1 = '1') then
-          EF        <= Bit_1;
+        elsif (DCC_in = '1' and Fin_0 = '1') then
+          EF        <= High;
           Shift_DCC <= '1';
         end if;
         -- Assign outputs
         Go_0 <= '0';
 
+        -- Received a high bit
+      when High =>
+        -- Next state
+        EF <= High_cont;
+        -- Assign outputs
+        Go_1      <= '1';           -- Start DCC bit generation
+        Cpt_Trame <= Cpt_Trame + 1; -- Increment trame counter
+
+        -- Wait until the bit has been transmitted
+      when High_cont =>
+        -- Next state
+        EF <= High_cont;
+        -- Reached the end of a frame?
+        if (Cpt_Trame = 51) then
+          EF <= Fin_Trame;
+        end if;
+
+        if (DCC_in = '0' and Fin_1 = '1') then
+          EF        <= Low;
+          Shift_DCC <= '1';
+        elsif (DCC_in = '1' and Fin_1 = '1') then
+          EF        <= High;
+          Shift_DCC <= '1';
+        end if;
+        -- Assign outputs
+        Go_1 <= '0';
+
+        -- End of frame, must wait 6 ms
       when Fin_Trame =>
         -- Next state
-        EF <= Fin_Trame_cont;
+        EF <= Delay;
         -- Assign outputs
         Start_Tempo <= '1';
+        Cpt_Trame   <= 0;
 
-      when Fin_Trame_cont =>
+        -- Active waiting for 6 ms (interval between frames)
+      when Delay =>
         -- Next state
-        EF <= Fin_Trame_cont;
+        EF <= Delay;
+        -- 6ms have passed, return to initial state
         if (Fin_Tempo = '1') then
           EF <= Idle;
         end if;
         -- Assign outputs
         Start_Tempo <= '0';
-
     end case;
   end process; -- MAE
 
