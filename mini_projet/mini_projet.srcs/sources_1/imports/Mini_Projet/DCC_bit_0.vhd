@@ -44,8 +44,11 @@ begin
       Cpt <= 0;
     elsif (rising_edge(Clk_1Mhz)) then
       Cpt <= Cpt + 1;
+      if Cpt = (MAX_COUNT - 1) then -- Éviter le dépassement
+        Cpt <= 0;
+      end if;
     end if;
-  end process; -- Sync
+  end process; -- Count
 
   -- Machine à État Fini
   MAE : process (EP, Go)
@@ -79,6 +82,6 @@ begin
         DCC_Out <= '0';
 
     end case;
-  end process;
+  end process; -- MAE
 
 end Behavioral;
