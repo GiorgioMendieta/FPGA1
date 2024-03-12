@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/yuva/FPGA/Mini_Projet/mini_projet/mini_projet.srcs/sources_1/imports/Mini_Projet/Generateur_Trames.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'DCC_FRAME_GENERATOR'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/yuva/FPGA/Mini_Projet/mini_projet/mini_projet.srcs/sim_1/new/Generateur_Trames_TB.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'Generateur_Trames_TB'

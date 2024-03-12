@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../mini_projet.srcs/sources_1/imports/Mini_Projet/Generateur_Trames.vhd" \
+"../../../../mini_projet.srcs/sim_1/new/Generateur_Trames_TB.vhd" \
+
+# Do not sort compile order
+nosort
