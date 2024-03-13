@@ -55,11 +55,17 @@ begin
     case EP is
         -- Initial state
       when Idle =>
+        -- Next state
         if (DCC_in = '0') then
           EF <= Low;
         elsif (DCC_in = '1') then
           EF <= High;
         end if;
+        -- Assign outputs
+        Go_0        <= '0';
+        Go_1        <= '0';
+        Shift_DCC   <= '0';
+        Start_Tempo <= '0';
 
         -- Received a low bit
       when Low =>
@@ -79,14 +85,13 @@ begin
         end if;
 
         if (DCC_in = '0' and Fin_0 = '1') then
-          EF        <= Low;
-          Shift_DCC <= '1';
+          EF <= Low;
         elsif (DCC_in = '1' and Fin_0 = '1') then
-          EF        <= High;
-          Shift_DCC <= '1';
+          EF <= High;
         end if;
         -- Assign outputs
-        Go_0 <= '0';
+        Go_0      <= '0';
+        Shift_DCC <= '1';
 
         -- Received a high bit
       when High =>
@@ -106,14 +111,13 @@ begin
         end if;
 
         if (DCC_in = '0' and Fin_1 = '1') then
-          EF        <= Low;
-          Shift_DCC <= '1';
+          EF <= Low;
         elsif (DCC_in = '1' and Fin_1 = '1') then
-          EF        <= High;
-          Shift_DCC <= '1';
+          EF <= High;
         end if;
         -- Assign outputs
-        Go_1 <= '0';
+        Go_1      <= '0';
+        Shift_DCC <= '1';
 
         -- End of frame, must wait 6 ms
       when Fin_Trame =>
