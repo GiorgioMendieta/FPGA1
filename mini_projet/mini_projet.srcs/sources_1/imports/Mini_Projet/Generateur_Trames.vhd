@@ -47,7 +47,8 @@ if Interrupteur(7)='1' then
 					 "011" & Interrupteur(4 downto 0) &
 					 Start_Bit &
 					 Champ_Controle &
-					 Stop_Bit;
+					 Stop_Bit &
+					 "000000000";
 
 	-- Interrupteur 6 Activé
 		--> Trame Marche Arrière du Train d'Adresse i
@@ -60,7 +61,8 @@ if Interrupteur(7)='1' then
 					 "010" & Interrupteur(4 downto 0) &
 					 Start_Bit &
 					 Champ_Controle &
-					 Stop_Bit;
+					 Stop_Bit &
+					 "000000000";
 
 
 	-- Interrupteur 5 Activé
@@ -75,7 +77,8 @@ if Interrupteur(7)='1' then
 					 "10010000" &
 					 Start_Bit &
 					 Champ_Controle &
-					 Stop_Bit;
+					 Stop_Bit &
+					 "000000000";
 
 	-- Interrupteur 4 Activé
 		--> Extinction des Phares du Train d'Adresse i
@@ -89,7 +92,8 @@ if Interrupteur(7)='1' then
 					 "10000000" &
 					 Start_Bit &
 					 Champ_Controle &
-					 Stop_Bit;
+					 Stop_Bit &
+					 "000000000";
 
 	-- Interrupteur 3 Activé
 		--> Activation du Klaxon (Fonction F11) du Train d'Adresse i
@@ -103,7 +107,8 @@ if Interrupteur(7)='1' then
 					 "10100100" &
 					 Start_Bit &
 					 Champ_Controle &
-					 Stop_Bit;
+					 Stop_Bit &
+					 "000000000";
 
 	-- Interrupteur 2 Activé
 		--> Réamorçage du Klaxon (Fonction F11) du Train d'Adresse i
@@ -117,7 +122,8 @@ if Interrupteur(7)='1' then
 					 "10100000" &
 					 Start_Bit &
 					 Champ_Controle &
-					 Stop_Bit;
+					 Stop_Bit &
+					 "000000000";
 
 	-- Interrupteur 1 Activé
 		--> Annonce SNCF (Fonction F13) du Train d'Adresse i
@@ -163,7 +169,8 @@ if Interrupteur(7)='1' then
 					 "01100000" &
 					 Start_Bit &
 					 Champ_Controle &
-					 Stop_Bit;
+					 Stop_Bit &
+					 "000000000";
 	end if;
 end process;
 
