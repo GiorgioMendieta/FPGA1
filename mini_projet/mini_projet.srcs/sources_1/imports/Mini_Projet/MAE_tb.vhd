@@ -77,4 +77,37 @@ begin
     Clk_s <= '1';
     wait for clk_period/2;
   end process;
+
+  stim_proc : process
+  begin
+    report "--- MAE test bench ---" severity note;
+      Reset_s     <= '0';
+    Fin_0_s     <= '0';
+    Fin_1_s     <= '0';
+    DCC_in_s    <= '0';
+    Fin_Tempo_s <= '0';
+
+    wait for clk_period;
+
+    Reset_s <= '1';
+    wait for clk_period * 10;
+
+    Fin_0_s <= '1';
+    wait for clk_period;
+
+    Fin_0_s  <= '0';
+    DCC_in_s <= '1';
+    wait for clk_period * 10;
+
+    Fin_0_s <= '1';
+    wait for clk_period;
+
+    Fin_0_s <= '0';
+    wait for clk_period * 10;
+
+    DCC_in_s <= '0';
+    wait for clk_period * 10;
+
+    wait;
+  end process;
 end testbench;
