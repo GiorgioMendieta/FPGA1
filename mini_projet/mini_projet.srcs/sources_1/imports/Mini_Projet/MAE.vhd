@@ -27,6 +27,7 @@ entity MAE is
     Start_Tempo : out std_logic; -- Signal pour démarrer le compteur
     Fin_Tempo   : in std_logic;  -- Signal pour arrêter le compteur
     DCC_in      : in std_logic;  -- Signal pour charger le bit DCC
+    Load_DCC    : out std_logic; -- Signal pour charger la trame DCC
     Shift_DCC   : out std_logic  -- Signal pour décaler le bit DCC
   );
 end MAE;
@@ -65,6 +66,7 @@ begin
         Go_0        <= '0';
         Go_1        <= '0';
         Shift_DCC   <= '0';
+        Load_DCC    <= '1';
         Start_Tempo <= '0';
 
         -- Received a low bit
@@ -91,6 +93,7 @@ begin
         end if;
         -- Assign outputs
         Go_0      <= '0';
+        Load_DCC  <= '0';
         Shift_DCC <= '1';
 
         -- Received a high bit
@@ -117,6 +120,7 @@ begin
         end if;
         -- Assign outputs
         Go_1      <= '0';
+        Load_DCC  <= '0';
         Shift_DCC <= '1';
 
         -- End of frame, must wait 6 ms
