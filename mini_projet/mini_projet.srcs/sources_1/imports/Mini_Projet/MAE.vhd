@@ -27,21 +27,19 @@ entity MAE is
     Start_Tempo : out std_logic; -- Signal pour démarrer le compteur
     Fin_Tempo   : in std_logic;  -- Signal pour arrêter le compteur
     DCC_in      : in std_logic;  -- Signal pour charger le bit DCC
-    Shift_DCC   : out std_logic; -- Signal pour décaler le bit DCC
+    Shift_DCC   : out std_logic  -- Signal pour décaler le bit DCC
   );
 end MAE;
 
 architecture Behavioral of MAE is
   type STATE is (Idle, High, High_cont, Low, Low_cont, Fin_Trame, Delay);
 
-  -- Signaux Internes
+  -- Internal Signals
   signal EP, EF    : STATE;                 -- EP: Etat présent, EF: État Futur
-  signal Cpt_Trame : integer range 0 to 51; -- Compteur pour la longeur du trame
+  signal Cpt_Trame : integer range 0 to 51; -- Frame length counter
 begin
 
-  Clk_Out <= Clk_Temp; -- Affectation du Port de Sortie
-
-  -- Processus de Synchronisation du MAE
+  -- Synchronization of the FSM
   sync : process (Clk, Reset)
   begin
     if (Reset = '0') then
