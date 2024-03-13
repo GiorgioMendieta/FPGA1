@@ -33,6 +33,7 @@ architecture testbench of MAE_tb is
       Start_Tempo : out std_logic; -- Signal pour démarrer le compteur
       Fin_Tempo   : in std_logic;  -- Signal pour arrêter le compteur
       DCC_in      : in std_logic;  -- Signal pour charger le bit DCC
+      Load_DCC    : out std_logic; -- Signal pour charger la trame DCC
       Shift_DCC   : out std_logic  -- Signal pour décaler le bit DCC
     );
   end component;
@@ -49,10 +50,11 @@ architecture testbench of MAE_tb is
   signal Start_Tempo_s : std_logic;
   signal Fin_Tempo_s   : std_logic;
   signal DCC_in_s      : std_logic;
+  signal Load_DCC_s    : std_logic;
   signal Shift_DCC_s   : std_logic;
 
   -- Clock period definitions
-  constant clk_period : time := 1 ps; -- 10us
+  constant clk_period : time := 100 ps; -- 10us
 
 begin
 
@@ -67,6 +69,7 @@ begin
     Start_Tempo => Start_Tempo_s,
     Fin_Tempo   => Fin_Tempo_s,
     DCC_in      => DCC_in_s,
+    Load_DCC    => Load_DCC_s,
     Shift_DCC   => Shift_DCC_s
   );
 
@@ -84,8 +87,8 @@ begin
       Reset_s     <= '0';
     Fin_0_s     <= '0';
     Fin_1_s     <= '0';
-    DCC_in_s    <= '0';
     Fin_Tempo_s <= '0';
+    DCC_in_s    <= '0';
 
     wait for clk_period;
 
@@ -93,17 +96,230 @@ begin
     wait for clk_period * 10;
 
     Fin_0_s <= '1';
-    wait for clk_period;
-
-    Fin_0_s  <= '0';
-    DCC_in_s <= '1';
-    wait for clk_period * 10;
-
-    Fin_0_s <= '1';
-    wait for clk_period;
-
+    wait for clk_period * 2;
     Fin_0_s <= '0';
-    wait for clk_period * 10;
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    Fin_0_s <= '1';
+    wait for clk_period * 2;
+    Fin_0_s <= '0';
+    wait for clk_period * 2;
+    ---------------------
+    Fin_Tempo_s <= '1';
+    wait for clk_period;
+    Fin_Tempo_s <= '0';
+    wait for clk_period;
 
     DCC_in_s <= '0';
     wait for clk_period * 10;
