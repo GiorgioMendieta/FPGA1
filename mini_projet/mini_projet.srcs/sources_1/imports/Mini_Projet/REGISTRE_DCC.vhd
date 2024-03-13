@@ -53,9 +53,10 @@ begin
       shift_register <= (others => '0');
 
     elsif rising_edge(clk) then
+      -- Load DCC Frame
       if COM_REG(1) = '1' then
         shift_register <= Trame;
-
+        -- Shift DCC Frame
       elsif COM_REG(0) = '1' then
         bit_out        <= shift_register(50);
         shift_register <= shift_register(49 downto 0) & '0';
