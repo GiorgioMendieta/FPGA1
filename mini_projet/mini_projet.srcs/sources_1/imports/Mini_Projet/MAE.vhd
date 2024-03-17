@@ -33,7 +33,7 @@ entity MAE is
 end MAE;
 
 architecture Behavioral of MAE is
-  type STATE is (Idle, High, High_cont, Low, Low_cont, Fin_Trame, Delay);
+  type STATE is (Idle, High, High_cont, Low, Low_cont, Fin_Trame);
 
   -- Internal Signals
   signal EP, EF    : STATE;                 -- EP: Etat présent, EF: État Futur
@@ -126,21 +126,14 @@ begin
         -- End of frame, must wait 6 ms
       when Fin_Trame =>
         -- Next state
-        EF <= Delay;
-        -- Assign outputs
-        Start_Tempo <= '1';
-        Cpt_Trame   <= 0;
-
-        -- Active waiting for 6 ms (interval between frames)
-      when Delay =>
-        -- Next state
-        EF <= Delay;
+        EF <= Fin_Trame;
         -- 6ms have passed, return to initial state
         if (Fin_Tempo = '1') then
           EF <= Idle;
         end if;
         -- Assign outputs
-        Start_Tempo <= '0';
+        Start_Tempo <= '1';
+        Cpt_Trame   <= 0;
     end case;
   end process; -- MAE
 
