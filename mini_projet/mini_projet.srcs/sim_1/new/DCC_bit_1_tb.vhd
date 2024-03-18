@@ -66,14 +66,14 @@ begin
 
     -- Test Reset
     report "--- DCC bit generation (1-bit) ---" severity note;
-      Reset_s <= '0';
+      Reset_s <= '1';
     Go_s    <= '0'; -- Signal de Validation
 
     wait for clk_period;
     assert (DCC_Out_s = '0') report "DCC value should be 0 during reset" severity error;
 
     -----
-    Reset_s <= '1';
+    Reset_s <= '0';
     Go_s    <= '0'; -- Signal de Validation
 
     wait for clk_period;

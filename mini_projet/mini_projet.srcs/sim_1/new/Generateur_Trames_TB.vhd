@@ -46,7 +46,8 @@ begin
     (
       Interrupteur => Interrupteur,
       Trame_DCC    => Trame_DCC);
-  Trame_DCC    => Trame_DCC);
+
+  Trame_DCC => Trame_DCC
 
   l1 : entity work.REGISTRE_DCC
     port

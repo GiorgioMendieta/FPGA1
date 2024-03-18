@@ -84,7 +84,7 @@ begin
   stim_proc : process
   begin
     report "--- MAE test bench ---" severity note;
-      Reset_s     <= '0';
+      Reset_s     <= '1';
     Fin_0_s     <= '0';
     Fin_1_s     <= '0';
     Fin_Tempo_s <= '0';
@@ -92,7 +92,7 @@ begin
 
     wait for clk_period;
 
-    Reset_s <= '1';
+    Reset_s <= '0';
     wait for clk_period;
 
     -- Count 51 bits

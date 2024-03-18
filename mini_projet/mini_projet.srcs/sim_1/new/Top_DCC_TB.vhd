@@ -46,7 +46,7 @@ begin
       clk          => clk,
       reset        => reset
     );
-  );
+
   Clk          <= not Clk after 5 ns;
   Reset        <= '1', '0' after 2 ns;
   Interrupteur <= X"00", X"01" after 500 ns;
