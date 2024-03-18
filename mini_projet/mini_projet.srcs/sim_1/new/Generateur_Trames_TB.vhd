@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -35,28 +33,30 @@ entity Generateur_Trames_TB is
 end Generateur_Trames_TB;
 
 architecture Behavioral of Generateur_Trames_TB is
-signal Interrupteur	: STD_LOGIC_VECTOR(7 downto 0);
-signal Trame_DCC: std_logic_vector(50 downto 0);
-signal clk : std_logic := '0';
-signal reset, Bit_out: std_logic;
-signal COM_REG: std_logic_vector(1 downto 0);
+  signal Interrupteur   : std_logic_vector(7 downto 0);
+  signal Trame_DCC      : std_logic_vector(50 downto 0);
+  signal clk            : std_logic := '0';
+  signal reset, Bit_out : std_logic;
+  signal COM_REG        : std_logic_vector(1 downto 0);
 
 begin
 
-l0: entity work.DCC_FRAME_GENERATOR
-port map(Interrupteur   =>  Interrupteur,
-        Trame_DCC       =>  Trame_DCC);
-        
-l1: entity work.REGISTRE_DCC
-port map(clk    => clk,
-        reset   => reset, 
-        COM_REG => COM_REG,
-        Bit_out => Bit_out,
-        Trame   => Trame_DCC  );
-        
-Clk   <= not Clk after 5 ns;
-Reset <= '1', '0' after 2 ns; 
-COM_REG <= "10", "01" after 10 ns;      
-Interrupteur <= X"00", X"01" after 500 ns;
+  l0 : entity work.DCC_FRAME_GENERATOR
+    port map
+    (
+      Interrupteur => Interrupteur,
+      Trame_DCC    => Trame_DCC);
+  Trame_DCC    => Trame_DCC);
 
-end Behavioral;
+  l1 : entity work.REGISTRE_DCC
+    port
+    map(clk => clk,
+    reset   => reset,
+    COM_REG => COM_REG,
+    Bit_out => Bit_out,
+    Trame   => Trame_DCC);
+
+  Clk          <= not Clk after 5 ns;
+  Reset        <= '1', '0' after 2 ns;
+  COM_REG      <= "10", "01" after 10 ns;
+  Interrupteur <= X"00", X"01" after 500 ns;
