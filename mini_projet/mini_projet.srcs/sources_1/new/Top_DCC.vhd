@@ -49,15 +49,14 @@ architecture Behavioral of Top_DCC is
 
 begin
 
-  l0 : entity work.DCC_FRAME_GENERATOR
+  DCC_Gen : entity work.DCC_FRAME_GENERATOR
     port map
     (
       Interrupteur => Interrupteur,
       Trame_DCC    => Trame_DCC
     );
-  );
 
-  l1 : entity work.REGISTRE_DCC
+  DCC_Reg : entity work.REGISTRE_DCC
     port
     map(
     clk     => clk,
@@ -68,7 +67,7 @@ begin
     Trame   => Trame_DCC
     );
 
-  l2 : entity work.MAE
+  MAE : entity work.MAE
     port
     map(
     Reset       => reset,
@@ -84,7 +83,7 @@ begin
     Shift_DCC   => shift
     );
 
-  l3 : entity work.COMPTEUR_TEMPO
+  Tempo : entity work.COMPTEUR_TEMPO
     port
     map(
     reset       => reset,
@@ -94,7 +93,7 @@ begin
     Fin_Tempo   => Fin_Tempo
     );
 
-  l4 : entity work.DCC_bit_0
+  DCC_Bit0 : entity work.DCC_bit_0
     port
     map(
     reset     => reset,
@@ -105,7 +104,7 @@ begin
     DCC_Out   => DCC_0
     );
 
-  l5 : entity work.DCC_bit_1
+  DCC_Bit1 : entity work.DCC_bit_1
     port
     map(
     reset     => reset,
@@ -116,7 +115,7 @@ begin
     DCC_Out   => DCC_1
     );
 
-  l6 : entity work.CLK_DIV
+  Clk_Div : entity work.CLK_DIV
     port
     map(
     reset   => reset,
