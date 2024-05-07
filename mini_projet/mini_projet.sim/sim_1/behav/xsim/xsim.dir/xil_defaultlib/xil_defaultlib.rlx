@@ -2,6 +2,7 @@
 2020.2
 Nov 18 2020
 09:20:35
+/users/enseig/mendieta/Documents/FPGA1/mini_projet/mini_projet.srcs/sim_1/new/TOP_tb.vhd,1715101132,vhdl,,,,top_tb,,,,,,,,
 /users/enseig/mendieta/Documents/FPGA1/mini_projet/mini_projet.srcs/sources_1/imports/Compteur_Tempo.vhd,1715099098,vhdl,,,,compteur_tempo,,,,,,,,
 /users/enseig/mendieta/Documents/FPGA1/mini_projet/mini_projet.srcs/sources_1/imports/Diviseur_Horloge.vhd,1715099098,vhdl,,,,clk_div,,,,,,,,
 /users/enseig/mendieta/Documents/FPGA1/mini_projet/mini_projet.srcs/sources_1/imports/Generateur_Trames.vhd,1715099098,vhdl,,,,dcc_frame_generator,,,,,,,,

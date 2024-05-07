@@ -1,6 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/users/enseig/mendieta/Documents/FPGA1/mini_projet/mini_projet.srcs/sources_1/imports/Compteur_Tempo.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'COMPTEUR_TEMPO'
-INFO: [VRFC 10-163] Analyzing VHDL file "/users/enseig/mendieta/Documents/FPGA1/mini_projet/mini_projet.srcs/sources_1/imports/Diviseur_Horloge.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'CLK_DIV'
-INFO: [VRFC 10-163] Analyzing VHDL file "/users/enseig/mendieta/Documents/FPGA1/mini_projet/mini_projet.srcs/sources_1/imports/Generateur_Trames.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'DCC_FRAME_GENERATOR'
