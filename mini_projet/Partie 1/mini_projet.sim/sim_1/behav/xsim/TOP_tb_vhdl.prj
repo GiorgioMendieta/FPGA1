@@ -1,0 +1,18 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../mini_projet.srcs/sources_1/imports/Compteur_Tempo.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/DCC_Bit0.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/DCC_Bit1.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/DCC_Compteur.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/DDC_MAE.vhd" \
+"../../../../mini_projet.srcs/sources_1/imports/Diviseur_Horloge.vhd" \
+"../../../../mini_projet.srcs/sources_1/imports/Generateur_Trames.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/MAE.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/MAE_Compteur.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/Registre_DCC.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/TOP.vhd" \
+"../../../../mini_projet.srcs/sources_1/new/Xor_Operation.vhd" \
+"../../../../mini_projet.srcs/sim_1/new/TOP_tb.vhd" \
+
+# Do not sort compile order
+nosort
