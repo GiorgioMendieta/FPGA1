@@ -1,114 +1,105 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Designed by: 
---
--- Module Name: MAE - Behavioral
--- Project Name: Centrale DCC
--- Target Devices: NEXYS 4 DDR
---
--- Generates DCC frames and spaces them by 6ms
--- Note: The DCC frame is big endian, so the first bit is the most significant bit
--- This means frames will always start with the preambule (14 bits of 1s) 
+-- Engineer: 
+-- 
+-- Create Date: 04.04.2023 10:32:26
+-- Design Name: 
+-- Module Name: MAE_tb - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
 ----------------------------------------------------------------------------------
 
+
 library IEEE;
-use IEEE.STD_LOGIC_1164.all;
-use IEEE.numeric_std.all;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
 
 entity MAE_tb is
-  --empty
+--  Port ( );
 end MAE_tb;
 
-architecture testbench of MAE_tb is
+architecture Behavioral of MAE_tb is
 
-  component MAE is
-    port
-    (
-      Reset       : in std_logic;  -- Reset Asynchrone
-      Clk         : in std_logic;  -- Horloge 100 MHz de la carte Nexys
-      Go_0        : out std_logic; -- Signal pour générer le bit 0
-      Go_1        : out std_logic; -- Signal pour générer le bit 1
-      Fin_0       : in std_logic;  -- Signal de Fin du bit 0
-      Fin_1       : in std_logic;  -- Signal de Fin du bit 1
-      Start_Tempo : out std_logic; -- Signal pour démarrer le compteur
-      Fin_Tempo   : in std_logic;  -- Signal pour arrêter le compteur
-      DCC_in      : in std_logic;  -- Signal pour charger le bit DCC
-      Load_DCC    : out std_logic; -- Signal pour charger la trame DCC
-      Shift_DCC   : out std_logic  -- Signal pour décaler le bit DCC
-    );
-  end component;
+component MAE is 
+    Port ( Clk 			    : in std_logic;		-- Horloge 100 MHz
+           Clk1M 		: in std_logic;		-- Horloge 1 MHz
+           Reset 		    : in std_logic;		-- Reset Asynchrone
+           Reset_Tempo : out std_logic;	
+           Start_Tempo	: out std_logic;		-- Commande de D�marrage de la Temporisation
+           Fin_Tempo	: in std_logic;		-- Drapeau de Fin de la Temporisation
+           Reset_DDC0 : out std_logic;
+           GO_0	        : out std_logic;		-- Commande de D?marrage de la Temporisation
+           FIN_0	    : in std_logic;		-- Drapeau de Fin de la Temporisation
+           Reset_DDC1 : out std_logic;
+           GO_1	        : out std_logic;		-- Commande de D?marrage de la Temporisation
+           FIN_1	    : in std_logic;		-- Drapeau de Fin de la Temporisation
+           Com_REG : out std_logic_vector(1 downto 0);          -- Command for register
+           Bit_out : in std_logic;                             -- Bit send to MAE
+           start : in std_logic 
+		);
+end component;
 
-  -- Signal definitions
-  type STATE is (Idle, High, High_cont, Low, Low_cont, Fin_Trame, Delay);
-
-  signal Reset_s       : std_logic;
-  signal Clk_s         : std_logic;
-  signal Go_0_s        : std_logic;
-  signal Go_1_s        : std_logic;
-  signal Fin_0_s       : std_logic;
-  signal Fin_1_s       : std_logic;
-  signal Start_Tempo_s : std_logic;
-  signal Fin_Tempo_s   : std_logic;
-  signal DCC_in_s      : std_logic;
-  signal Load_DCC_s    : std_logic;
-  signal Shift_DCC_s   : std_logic;
-
-  -- Clock period definitions
-  constant clk_period : time := 100 ps; -- 10us
+signal Clk_s : std_logic := '0';
+signal Clk1M_s : std_logic := '0';
+signal Reset_s : std_logic := '1';
+signal Reset_Tempo_s : std_logic;
+signal Start_Tempo_s : std_logic;
+signal Fin_Tempo_s : std_logic:= '0';
+signal Reset_DDC0_s : std_logic;
+signal GO_0_s : std_logic;
+signal FIN_0_s : std_logic:= '0';
+signal Reset_DDC1_s : std_logic;
+signal GO_1_s : std_logic;
+signal FIN_1_s : std_logic := '0';
+signal Com_REG_s : std_logic_vector(1 downto 0);
+signal Bit_out_s : std_logic := '1';
+signal start_s : std_logic := '0';
 
 begin
 
-  DUT : MAE port map
-  (
-    Reset       => Reset_s,
-    Clk         => Clk_s,
-    Go_0        => Go_0_s,
-    Go_1        => Go_1_s,
-    Fin_0       => Fin_0_s,
-    Fin_1       => Fin_1_s,
-    Start_Tempo => Start_Tempo_s,
-    Fin_Tempo   => Fin_Tempo_s,
-    DCC_in      => DCC_in_s,
-    Load_DCC    => Load_DCC_s,
-    Shift_DCC   => Shift_DCC_s
-  );
+-- Component COMPTEUR_TEMPO 
+    MAE_0 : MAE
+    port map ( Clk => Clk_s,
+               Clk1M => Clk1M_s,
+               Reset => Reset_s,
+               Reset_Tempo => Reset_Tempo_s,
+               Start_Tempo => Start_Tempo_s,
+               Fin_Tempo => Fin_Tempo_s,
+               Reset_DDC0 => Reset_DDC0_s,
+               GO_0 => GO_0_s,
+               FIN_0 => FIN_0_s,
+               Reset_DDC1 => Reset_DDC1_s,
+               GO_1 => GO_1_s,
+               FIN_1 => FIN_1_s,
+               Com_REG => Com_REG_s,
+               Bit_out => Bit_out_s,
+               start => start_s);
+               
+    -- Inverse the signal horloge
+    Clk_s <= not Clk_s after 1 ns;
+    Clk1M_s <= not Clk1M_s after 5 ns;
 
-  clk_process : process
-  begin
-    Clk_s <= '0';
-    wait for clk_period/2;
-    Clk_s <= '1';
-    wait for clk_period/2;
-  end process;
-
-  stim_proc : process
-  begin
-    report "--- MAE test bench ---" severity note;
-      Reset_s     <= '1';
-    Fin_0_s     <= '0';
-    Fin_1_s     <= '0';
-    Fin_Tempo_s <= '0';
-    DCC_in_s    <= '0';
-
-    wait for clk_period;
-
-    Reset_s <= '0';
-    wait for clk_period;
-
-    -- Count 51 bits
-    boucle : for i in 0 to 25 loop
-      -- Bit 0
-      Fin_0_s <= '1';
-      wait for clk_period * 2;
-      Fin_0_s <= '0';
-      wait for clk_period * 2;
-      -- Bit 1
-      Fin_1_s <= '1';
-      wait for clk_period * 2;
-      Fin_1_s <= '0';
-      wait for clk_period * 2;
-    end loop; -- loop
-
-    wait;
-  end process;
-end testbench;
+    -- Reset off 
+    Reset_s <= '0' after 20 ns;
+    
+    -- Start flag set 
+    start_s <= '1' after 25 ns, '0' after 30 ns;
+    
+end Behavioral;
