@@ -17,10 +17,8 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,43 +30,47 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Compteur_Tempo_tb is
---  Port ( );
+  --  Port ( );
 end Compteur_Tempo_tb;
 
 architecture Behavioral of Compteur_Tempo_tb is
 
-component COMPTEUR_TEMPO is 
-    Port (  Clk 			: in STD_LOGIC;	   -- Horloge 100 MHz
-            Reset 		: in STD_LOGIC;		   -- Reset Asynchrone
-            Clk1M 		: in STD_LOGIC;		   -- Horloge 1 MHz
-            Start_Tempo	: in STD_LOGIC;		   -- Commande de Démarrage de la Temporisation
-            Fin_Tempo	: out STD_LOGIC		   -- Drapeau de Fin de la Temporisation
-            );
-end component;
+  component COMPTEUR_TEMPO is
+    port
+    (
+      Clk         : in std_logic; -- Horloge 100 MHz
+      Reset       : in std_logic; -- Reset Asynchrone
+      Clk1M       : in std_logic; -- Horloge 1 MHz
+      Start_Tempo : in std_logic; -- Commande de Dï¿½marrage de la Temporisation
+      Fin_Tempo   : out std_logic -- Drapeau de Fin de la Temporisation
+    );
+  end component;
 
-signal Clk_s : std_logic := '0';            -- Horloge input signal 100Mhz
-signal Reset_s : std_logic := '1';          -- Reset Asynchrone signal
-signal Clk1M_s : std_logic := '0';          -- Horloge input signal 1Mhz
-signal Start_Tempo_s : std_logic := '0';	-- Command to start Tempo
-signal Fin_Tempo_s : std_logic;             -- Flag if Tempo finish
-            
+  signal Clk_s         : std_logic := '0'; -- Horloge input signal 100Mhz
+  signal Reset_s       : std_logic := '1'; -- Reset Asynchrone signal
+  signal Clk1M_s       : std_logic := '0'; -- Horloge input signal 1Mhz
+  signal Start_Tempo_s : std_logic := '0'; -- Command to start Tempo
+  signal Fin_Tempo_s   : std_logic;        -- Flag if Tempo finish
+
 begin
 
-    -- Component COMPTEUR_TEMPO 
-    COMPTEUR_TEMPO_1 : COMPTEUR_TEMPO
-    port map (  Clk => Clk_s,
-                Reset => Reset_s,
-                Clk1M => Clk1M_s,
-                Start_Tempo	=> Start_Tempo_s,
-                Fin_Tempo => Fin_Tempo_s);
+  -- Component COMPTEUR_TEMPO 
+  COMPTEUR_TEMPO_1 : COMPTEUR_TEMPO
+  port map
+  (
+    Clk         => Clk_s,
+    Reset       => Reset_s,
+    Clk1M       => Clk1M_s,
+    Start_Tempo => Start_Tempo_s,
+    Fin_Tempo   => Fin_Tempo_s);
 
-    -- Inverse the signal horloge
-    Clk_s <= not Clk_s after 1 ns;
-    Clk1M_s <= not Clk1M_s after 5 ns;
+  -- Inverse the signal horloge
+  Clk_s   <= not Clk_s after 1 ns;
+  Clk1M_s <= not Clk1M_s after 5 ns;
 
-    -- Reset off 
-    Reset_s <= '0' after 20 ns;
-    
-    -- Start flag set 
-    Start_Tempo_s <= '1' after 100 ns, '0' after 200 ns, '1' after 70000 ns, '0' after 70100 ns;
+  -- Reset off 
+  Reset_s <= '0' after 20 ns;
+
+  -- Start flag set 
+  Start_Tempo_s <= '1' after 100 ns, '0' after 200 ns, '1' after 70000 ns, '0' after 70100 ns;
 end Behavioral;
