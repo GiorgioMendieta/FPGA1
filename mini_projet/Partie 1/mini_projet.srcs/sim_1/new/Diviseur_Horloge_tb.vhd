@@ -1,8 +1,8 @@
 ----------------------------------------------------------------------------------
--- Company: UPMC
--- Engineer: YongLI & MarcZHAN
+-- Company: 
+-- Engineer: 
 -- 
--- Create Date: 21.03.2023 10:46:51
+-- Create Date: 21.03.2024 10:46:51
 -- Design Name: Diviseur_Horloge_tb.vhdl
 -- Module Name: Diviseur_Horloge_tb - Behavioral
 -- Project Name: Project_FPGA
